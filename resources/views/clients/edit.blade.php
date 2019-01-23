@@ -48,10 +48,7 @@
               <option>Female</option>
             </select>            
         </div>
-        <div class="form-group">
-          <label for="quantity">Share Quantity:</label>
-          <input type="text" class="form-control" name="share_qty" value={{ $client->share_qty }} />
-        </div>
+        
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
   </div>

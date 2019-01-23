@@ -95,6 +95,23 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'lname' => 'required',
+            'fname' => 'required|string|max:50',
+            'email' => 'required|email|unique:clients',
+            'phone' => 'required',
+            'gender' => 'required'
+        ]);
+
+        $client = Client::find($id);
+        $client->fname = $request->get('fname');
+        $client->lname = $request->get('lname');
+        $client->email = $request->get('email');
+        $client->phone = $request->get('phone');
+        $client->gender = $request->get('gender');
+        $client->save();
+
+        return redirect('/clients')->with('success', 'Clients details updated successfully.');
     }
 
     /**
