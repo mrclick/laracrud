@@ -99,7 +99,7 @@ class ClientsController extends Controller
             'lname' => 'required',
             'fname' => 'required|string|max:50',
             'email' => 'required|email|unique:clients',
-            'phone' => 'required',
+            'phone' => 'required|digits:10',
             'gender' => 'required'
         ]);
 
@@ -123,5 +123,9 @@ class ClientsController extends Controller
     public function destroy($id)
     {
         //
+        $client = Client::find($id);
+        $client->delete();
+
+        return redirect('/clients')->with('success', 'Client has been deleted successfully.');
     }
 }
